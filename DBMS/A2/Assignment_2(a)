@@ -1,0 +1,47 @@
+ CREATE TABLE Customer(
+    cust_no INT PRIMARY KEY AUTO_INCREMENT,
+    cust_fname VARCHAR(20) NOT NULL,
+    cust_lname VARCHAR(20) NOT NULL,
+    cust_company VARCHAR(20) NOT NULL,
+    cust_addr VARCHAR(20) NOT NULL,
+    city VARCHAR(20) NOT NULL,
+    cust_phone VARCHAR(10) NOT NULL
+    );
+
+CREATE TABLE Author(
+    author_no INT PRIMARY KEY AUTO_INCREMENT,
+    author_name VARCHAR(20) NOT NULL,
+    country VARCHAR(15) NOT NULL
+    );
+
+CREATE TABLE order_no(
+    order_no INT PRIMARY KEY AUTO_INCREMENT,
+    cust_no INT NOT NULL,
+    ISBN INT NOT NULL,
+    qty INT NOT NULL,
+    odate DATE NOT NULL,
+    FOREIGN KEY (cust_no)
+    	REFERENCES Customer (cust_no)
+    	ON DELETE CASCADE
+    );
+
+CREATE TABLE book(
+    ISBN INT PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(25) NOT NULL,
+    unit_price INT NOT NULL,
+    author_no INT NOT NULL,
+    publisher_no INT NOT NULL,
+    pub_year YEAR NOT NULL,
+    FOREIGN KEY (author_no)
+         REFERENCES Author (author_no)
+         ON DELETE CASCADE
+         );
+    
+CREATE TABLE publisher(
+    publisher_no INT PRIMARY KEY AUTO_INCREMENT,
+    publisher_name VARCHAR(20) NOT NULL,
+    addr VARCHAR(20) NOT NULL,
+    yr YEAR NOT NULL
+     );  
+   
+ 

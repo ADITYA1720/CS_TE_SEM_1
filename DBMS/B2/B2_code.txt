@@ -1,0 +1,390 @@
+MongoDB Enterprise > use Assignment_B2
+switched to db Assignment_B2
+MongoDB Enterprise > db.professor.insert({pname : "Amruta", department : {dname : "Computer", building : "A2" }, salary : 50000, city : "Pune"})
+WriteResult({ "nInserted" : 1 })
+MongoDB Enterprise > db.professor.find()
+{ "_id" : ObjectId("5f9656d75b9c8239f58528a4"), "pname" : "Amruta", "department" : { "dname" : "Computer", "building" : "A2" }, "salary" : 50000, "city" : "Pune" }
+MongoDB Enterprise > db.professor.insert({pname : "Wasim", department : {dname : "IT", building : "A3" }, salary : 40000, city : "Mumbai"})
+WriteResult({ "nInserted" : 1 })
+MongoDB Enterprise > db.professor.insert({pname : "Manish", department : {dname : "IT", building : "A3" }, salary : 45000, city : "Nagpur"})
+WriteResult({ "nInserted" : 1 })
+MongoDB Enterprise > db.professor.insert({pname : "Ashwini", department : {dname : "ENTC", building : "A4" }, salary : 42000, city : "Mumbai"})
+WriteResult({ "nInserted" : 1 })
+MongoDB Enterprise > db.professor.insert({pname : "Nilima", department : {dname : "Computer", building : "A2" }, salary : 38000, city : "Pune"})
+WriteResult({ "nInserted" : 1 })
+MongoDB Enterprise > db.professor.insert({pname : "Snehal", department : {dname : "ENTC", building : "A4" }, salary : 44000, city : "Pune"})
+WriteResult({ "nInserted" : 1 })
+MongoDB Enterprise > db.professor.insert({pname : "Freddie", department : {dname : "ENTC", building : "A4" }, salary : 35000, city : "Nagpur"})
+WriteResult({ "nInserted" : 1 })
+MongoDB Enterprise > db.professor.insert({pname : "Milind", department : {dname : "IT", building : "A3" }, salary : 42000, city : "Mumbai"})
+WriteResult({ "nInserted" : 1 })
+MongoDB Enterprise > db.professor.find().pretty()
+{
+        "_id" : ObjectId("5f9656d75b9c8239f58528a4"),
+        "pname" : "Amruta",
+        "department" : {
+                "dname" : "Computer",
+                "building" : "A2"
+        },
+        "salary" : 50000,
+        "city" : "Pune"
+}
+{
+        "_id" : ObjectId("5f96571c5b9c8239f58528a5"),
+        "pname" : "Wasim",
+        "department" : {
+                "dname" : "IT",
+                "building" : "A3"
+        },
+        "salary" : 40000,
+        "city" : "Mumbai"
+}
+{
+        "_id" : ObjectId("5f96573a5b9c8239f58528a6"),
+        "pname" : "Manish",
+        "department" : {
+                "dname" : "IT",
+                "building" : "A3"
+        },
+        "salary" : 45000,
+        "city" : "Nagpur"
+}
+{
+        "_id" : ObjectId("5f9657635b9c8239f58528a7"),
+        "pname" : "Ashwini",
+        "department" : {
+                "dname" : "ENTC",
+                "building" : "A4"
+        },
+        "salary" : 42000,
+        "city" : "Mumbai"
+}
+{
+        "_id" : ObjectId("5f9657a05b9c8239f58528a8"),
+        "pname" : "Nilima",
+        "department" : {
+                "dname" : "Computer",
+                "building" : "A2"
+        },
+        "salary" : 38000,
+        "city" : "Pune"
+}
+{
+        "_id" : ObjectId("5f9657ea5b9c8239f58528a9"),
+        "pname" : "Snehal",
+        "department" : {
+                "dname" : "ENTC",
+                "building" : "A4"
+        },
+        "salary" : 44000,
+        "city" : "Pune"
+}
+{
+        "_id" : ObjectId("5f9658665b9c8239f58528aa"),
+        "pname" : "Freddie",
+        "department" : {
+                "dname" : "ENTC",
+                "building" : "A4"
+        },
+        "salary" : 35000,
+        "city" : "Nagpur"
+}
+{
+        "_id" : ObjectId("5f9658885b9c8239f58528ab"),
+        "pname" : "Milind",
+        "department" : {
+                "dname" : "IT",
+                "building" : "A3"
+        },
+        "salary" : 42000,
+        "city" : "Mumbai"
+}
+MongoDB Enterprise > db.professor.find({$and : [{"department.dname" : "IT"}, {salary : {$lt : 45000}}]}).pretty()
+{
+        "_id" : ObjectId("5f96571c5b9c8239f58528a5"),
+        "pname" : "Wasim",
+        "department" : {
+                "dname" : "IT",
+                "building" : "A3"
+        },
+        "salary" : 40000,
+        "city" : "Mumbai"
+}
+{
+        "_id" : ObjectId("5f9658885b9c8239f58528ab"),
+        "pname" : "Milind",
+        "department" : {
+                "dname" : "IT",
+                "building" : "A3"
+        },
+        "salary" : 42000,
+        "city" : "Mumbai"
+}
+MongoDB Enterprise > db.professor.find({$or : [{"department.dname" : "Computer"}, {city : "Mumbai"}]}).pretty()
+{
+        "_id" : ObjectId("5f9656d75b9c8239f58528a4"),
+        "pname" : "Amruta",
+        "department" : {
+                "dname" : "Computer",
+                "building" : "A2"
+        },
+        "salary" : 50000,
+        "city" : "Pune"
+}
+{
+        "_id" : ObjectId("5f96571c5b9c8239f58528a5"),
+        "pname" : "Wasim",
+        "department" : {
+                "dname" : "IT",
+                "building" : "A3"
+        },
+        "salary" : 40000,
+        "city" : "Mumbai"
+}
+{
+        "_id" : ObjectId("5f9657635b9c8239f58528a7"),
+        "pname" : "Ashwini",
+        "department" : {
+                "dname" : "ENTC",
+                "building" : "A4"
+        },
+        "salary" : 42000,
+        "city" : "Mumbai"
+}
+{
+        "_id" : ObjectId("5f9657a05b9c8239f58528a8"),
+        "pname" : "Nilima",
+        "department" : {
+                "dname" : "Computer",
+                "building" : "A2"
+        },
+        "salary" : 38000,
+        "city" : "Pune"
+}
+{
+        "_id" : ObjectId("5f9658885b9c8239f58528ab"),
+        "pname" : "Milind",
+        "department" : {
+                "dname" : "IT",
+                "building" : "A3"
+        },
+        "salary" : 42000,
+        "city" : "Mumbai"
+}
+MongoDB Enterprise > db.professor.find({$nor : [{salary : {$lte : 42000}}, {city : "Pune"}]}).pretty()
+{
+        "_id" : ObjectId("5f96573a5b9c8239f58528a6"),
+        "pname" : "Manish",
+        "department" : {
+                "dname" : "IT",
+                "building" : "A3"
+        },
+        "salary" : 45000,
+        "city" : "Nagpur"
+}
+MongoDB Enterprise > db.professor.save({_id : 101, pname : "ABC", department : {dname : "XYZ", building : "A4" }, salary : 40000, city : "PQR"})
+WriteResult({ "nMatched" : 0, "nUpserted" : 1, "nModified" : 0, "_id" : 101 })
+MongoDB Enterprise > db.professor.find().pretty()
+{
+        "_id" : ObjectId("5f9656d75b9c8239f58528a4"),
+        "pname" : "Amruta",
+        "department" : {
+                "dname" : "Computer",
+                "building" : "A2"
+        },
+        "salary" : 50000,
+        "city" : "Pune"
+}
+{
+        "_id" : ObjectId("5f96571c5b9c8239f58528a5"),
+        "pname" : "Wasim",
+        "department" : {
+                "dname" : "IT",
+                "building" : "A3"
+        },
+        "salary" : 40000,
+        "city" : "Mumbai"
+}
+{
+        "_id" : ObjectId("5f96573a5b9c8239f58528a6"),
+        "pname" : "Manish",
+        "department" : {
+                "dname" : "IT",
+                "building" : "A3"
+        },
+        "salary" : 45000,
+        "city" : "Nagpur"
+}
+{
+        "_id" : ObjectId("5f9657635b9c8239f58528a7"),
+        "pname" : "Ashwini",
+        "department" : {
+                "dname" : "ENTC",
+                "building" : "A4"
+        },
+        "salary" : 42000,
+        "city" : "Mumbai"
+}
+{
+        "_id" : ObjectId("5f9657a05b9c8239f58528a8"),
+        "pname" : "Nilima",
+        "department" : {
+                "dname" : "Computer",
+                "building" : "A2"
+        },
+        "salary" : 38000,
+        "city" : "Pune"
+}
+{
+        "_id" : ObjectId("5f9657ea5b9c8239f58528a9"),
+        "pname" : "Snehal",
+        "department" : {
+                "dname" : "ENTC",
+                "building" : "A4"
+        },
+        "salary" : 44000,
+        "city" : "Pune"
+}
+{
+        "_id" : ObjectId("5f9658665b9c8239f58528aa"),
+        "pname" : "Freddie",
+        "department" : {
+                "dname" : "ENTC",
+                "building" : "A4"
+        },
+        "salary" : 35000,
+        "city" : "Nagpur"
+}
+{
+        "_id" : ObjectId("5f9658885b9c8239f58528ab"),
+        "pname" : "Milind",
+        "department" : {
+                "dname" : "IT",
+                "building" : "A3"
+        },
+        "salary" : 42000,
+        "city" : "Mumbai"
+}
+{
+        "_id" : ObjectId("5f965cba5b9c8239f58528ac"),
+        "pname" : "ABC",
+        "department" : {
+                "dname" : "XYZ",
+                "building" : "A4"
+        },
+        "salary" : 40000,
+        "city" : "PQR"
+}
+{
+        "_id" : 101,
+        "pname" : "ABC",
+        "department" : {
+                "dname" : "XYZ",
+                "building" : "A4"
+        },
+        "salary" : 40000,
+        "city" : "PQR"
+}
+MongoDB Enterprise > db.professor.save({_id : 101, pname : "ABC", department : {dname : "XYZ", building : "A4" }, salary : 40000, city : "LMN"})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+MongoDB Enterprise > db.professor.find().pretty()
+{
+        "_id" : ObjectId("5f9656d75b9c8239f58528a4"),
+        "pname" : "Amruta",
+        "department" : {
+                "dname" : "Computer",
+                "building" : "A2"
+        },
+        "salary" : 50000,
+        "city" : "Pune"
+}
+{
+        "_id" : ObjectId("5f96571c5b9c8239f58528a5"),
+        "pname" : "Wasim",
+        "department" : {
+                "dname" : "IT",
+                "building" : "A3"
+        },
+        "salary" : 40000,
+        "city" : "Mumbai"
+}
+{
+        "_id" : ObjectId("5f96573a5b9c8239f58528a6"),
+        "pname" : "Manish",
+        "department" : {
+                "dname" : "IT",
+                "building" : "A3"
+        },
+        "salary" : 45000,
+        "city" : "Nagpur"
+}
+{
+        "_id" : ObjectId("5f9657635b9c8239f58528a7"),
+        "pname" : "Ashwini",
+        "department" : {
+                "dname" : "ENTC",
+                "building" : "A4"
+        },
+        "salary" : 42000,
+        "city" : "Mumbai"
+}
+{
+        "_id" : ObjectId("5f9657a05b9c8239f58528a8"),
+        "pname" : "Nilima",
+        "department" : {
+                "dname" : "Computer",
+                "building" : "A2"
+        },
+        "salary" : 38000,
+        "city" : "Pune"
+}
+{
+        "_id" : ObjectId("5f9657ea5b9c8239f58528a9"),
+        "pname" : "Snehal",
+        "department" : {
+                "dname" : "ENTC",
+                "building" : "A4"
+        },
+        "salary" : 44000,
+        "city" : "Pune"
+}
+{
+        "_id" : ObjectId("5f9658665b9c8239f58528aa"),
+        "pname" : "Freddie",
+        "department" : {
+                "dname" : "ENTC",
+                "building" : "A4"
+        },
+        "salary" : 35000,
+        "city" : "Nagpur"
+}
+{
+        "_id" : ObjectId("5f9658885b9c8239f58528ab"),
+        "pname" : "Milind",
+        "department" : {
+                "dname" : "IT",
+                "building" : "A3"
+        },
+        "salary" : 42000,
+        "city" : "Mumbai"
+}
+{
+        "_id" : ObjectId("5f965cba5b9c8239f58528ac"),
+        "pname" : "ABC",
+        "department" : {
+                "dname" : "XYZ",
+                "building" : "A4"
+        },
+        "salary" : 40000,
+        "city" : "PQR"
+}
+{
+        "_id" : 101,
+        "pname" : "ABC",
+        "department" : {
+                "dname" : "XYZ",
+                "building" : "A4"
+        },
+        "salary" : 40000,
+        "city" : "LMN"
+}

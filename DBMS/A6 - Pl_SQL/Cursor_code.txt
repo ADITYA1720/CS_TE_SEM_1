@@ -1,0 +1,55 @@
+CREATE DATABASE Assignment_A6;
+USE Assignment_A6;
+
+CREATE TABLE Student(rollno INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(20), marks INT);
+CREATE TABLE Result(rollno INT, name VARCHAR(20), marks INT, status VARCHAR(30), FOREIGN KEY (rollno) REFERENCES Student(rollno) ON DELETE CASCADE);
+
+INSERT INTO Student(name,marks) VALUES('Ross',73);
+INSERT INTO Student(name,marks) VALUES('Rachael',88);
+INSERT INTO Student(name,marks) VALUES('Chandler',59);
+INSERT INTO Student(name,marks) VALUES('Joey',52);
+INSERT INTO Student(name,marks) VALUES('Phoebe',44);
+INSERT INTO Student(name,marks) VALUES('Monica',67);
+INSERT INTO Student(name,marks) VALUES('Mike',79);
+INSERT INTO Student(name,marks) VALUES('Janice',56);
+INSERT INTO Student(name,marks) VALUES('Emma',74);
+
+SELECT * FROM Student;
+SELECT * FROM Result;
+
+
+DELIMITER //
+CREATE PROCEDURE SetStatus()
+BEGIN
+DECLARE rollno1 INT;
+DECLARE name1 VARCHAR(20);
+DECLARE marks1 INT;
+DECLARE done boolean;
+DECLARE c1 CURSOR FOR SELECT rollno,name,marks FROM Student;
+DECLARE CONTINUE HANDLER FOR NOT FOUND SET done=TRUE;
+OPEN c1;
+myloop:LOOP
+IF done=TRUE THEN
+	LEAVE myloop;
+END IF;
+FETCH c1 INTO rollno1,name1,marks1;
+IF (marks1>=75) THEN
+	INSERT INTO Result VALUES(rollno1,name1,marks1,"Distinction");
+ELSEIF (marks1>=60 AND marks1<75) THEN
+	INSERT INTO Result VALUES(rollno1,name1,marks1,"First Class");
+ELSEIF (marks1>=55 AND marks1<60) THEN
+	INSERT INTO Result VALUES(rollno1,name1,marks1,"Higher Second Class");
+ELSEIF (marks1>=50 AND marks1<55) THEN
+	INSERT INTO Result VALUES(rollno1,name1,marks1,"Second Class");
+ELSEIF marks1<50 THEN
+	INSERT INTO Result VALUES(rollno1,name1,marks1,"Fail");
+END IF;
+END LOOP myloop;
+CLOSE c1;
+END;
+//
+
+CALL SetStatus();
+
+SELECT * FROM Student;
+SELECT * FROM Result;  

@@ -1,0 +1,39 @@
+Customer Table
+
+INSERT INTO Customer VALUES(1, 'Hansi', 'Flick', 'Bavaria', 'MG Road', 'Pune', 1111 );
+INSERT INTO Customer VALUES(2, 'Harry', 'Redknap', 'Spurs', 'East Street', 'Delhi', 2222 );
+INSERT INTO Customer VALUES(3, 'Thomas', 'Tuchel', 'Saints', 'Brimall Lane', 'Chennai', 3333 );
+INSERT INTO Customer VALUES(4, 'Niko', 'Kovac', 'Monaco', 'Principality Road', 'Pune', 4444 );
+INSERT INTO Customer VALUES(5, 'Jupp', 'Heynckes', 'Bavaria', 'MG Road', 'Mumbai', 55555 );
+
+Order Table
+
+INSERT INTO order_no VALUES(101, 5, 4554, 2, '2008-01-31');
+INSERT INTO order_no VALUES(102, 3, 1234, 1, '2012-06-25');
+INSERT INTO order_no VALUES(103, 2, 6226, 5, '2015-03-17');
+INSERT INTO order_no VALUES(104, 4, 4484, 2, '2017-09-21');
+INSERT INTO order_no VALUES(105, 1, 7774, 1, '2019-08-01');
+
+Book
+
+INSERT INTO book VALUES(4554, 'MySql', 200, 1, 1001, '2000');
+INSERT INTO book VALUES(1234, 'Let Us C', 300, 2, 1002, '2004');
+INSERT INTO book VALUES(6226, 'Gone Girl', 350, 3, 1003, '2006');
+INSERT INTO book VALUES(4484, 'Batman', 400, 4, 1004, '2015');
+INSERT INTO book VALUES(7774, 'Legends are Forever', 500, 5, 1005, '2016');
+
+Author
+
+INSERT INTO Author VALUES(1, 'Chetan Bhagat', 'India');
+INSERT INTO Author VALUES(2, 'Enid Blyton', 'USA');
+INSERT INTO Author VALUES(3, 'John Green', 'Germany');
+INSERT INTO Author VALUES(4, 'RK Narayan', 'India');
+INSERT INTO Author VALUES(5, 'Peter van Houten', 'Australia');
+
+Publisher
+
+INSERT INTO publisher VALUES(1001, 'Mc-Graw Hill', 'Ring Street', 1975);
+INSERT INTO publisher VALUES(1002, 'Pearson', 'Mesh Lane', 1970);
+INSERT INTO publisher VALUES(1003, 'Cengage', 'Star Trek', 1980);
+
+

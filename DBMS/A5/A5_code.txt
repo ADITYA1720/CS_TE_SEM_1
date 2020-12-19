@@ -1,0 +1,50 @@
+CREATE DATABASE Assignment_A5;
+USE Assignment_A5;
+
+CREATE TABLE Book(rollno INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(10), dateOfIssue DATE, nameOfBook VARCHAR(20), status VARCHAR(1));
+CREATE TABLE Fine(rollno INT, dateOfReturn DATE, amount INT(3), FOREIGN KEY (rollno) REFERENCES Book(rollno));
+
+INSERT INTO Book values(1,'Howard','2020-09-01','The Big Bang Theory','I');
+INSERT INTO Book values(2,'Bernie','2020-08-07','Friends','I');
+INSERT INTO Book values(3,'Raj','2020-08-22','Bly Manor','I');
+INSERT INTO Book values(4,'Sheldon','2020-08-30','The Stars','I');
+INSERT INTO Book values(5,'Leonard','2020-09-07','Philosophy of Life','I');
+INSERT INTO Book values(6,'Penny','2020-08-18','Steve Jobs','I');
+
+DELIMITER //
+CREATE PROCEDURE BookReturn(IN rn1 INT, IN nb1 VARCHAR(30))
+BEGIN
+DECLARE idate DATE;
+DECLARE diff INT;
+DECLARE fineamt INT;
+DECLARE extradays INT;
+SELECT dateOfIssue INTO idate FROM Book where rollno=rn1 AND nameOfBook=nb1;
+SELECT DATEDIFF(CURDATE(),idate) INTO diff;
+IF (diff>=15 AND diff<=30) THEN
+	SET fineamt=diff*5;
+    INSERT INTO Fine VALUES(rn1,CURDATE(),fineamt);
+    UPDATE Book SET status='R' WHERE rollno=rn1 AND nameOfBook=nb1;
+ELSEIF diff>30 THEN
+	SET extradays=diff-30;
+	SET fineamt=(30*5)+(extradays*50);
+    INSERT INTO Fine VALUES(rn1,CURDATE(),fineamt);
+    UPDATE Book SET status='R' WHERE rollno=rn1 AND nameOfBook=nb1;
+ELSE 
+	SET fineamt=0;
+END IF;
+END;
+//
+
+SELECT * FROM Book;
+SELECT * FROM Fine;
+
+call BookReturn(1,'The Big Bang Theory');
+call BookReturn(2,'Friends');
+call BookReturn(3,'The Haunting of the Bly Manor');
+call BookReturn(4,'The Fault in Our Stars');
+call BookReturn(5,'Philosophy of Life');
+call BookReturn(6,'Steve Jobs');
+
+SELECT * FROM Book;
+SELECT * FROM Fine;
+

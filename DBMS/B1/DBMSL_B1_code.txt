@@ -1,0 +1,139 @@
+MongoDB Enterprise > use Assignment_B1
+switched to db Assignment_B1
+MongoDB Enterprise > db.student.insert({rollno : 1, name : "Aditya", department : "Computer"})
+WriteResult({ "nInserted" : 1 })
+MongoDB Enterprise > db.student.find()
+{ "_id" : ObjectId("5f925c505a9f10a439b14395"), "rollno" : 1, "name" : "Aditya", "department" : "Computer" }
+MongoDB Enterprise > db.student.insert({rollno : 2, name : "Tanay", department : "IT"})
+WriteResult({ "nInserted" : 1 })
+MongoDB Enterprise > db.student.insert({rollno : 3, name : "Jay", department : "IT"})
+WriteResult({ "nInserted" : 1 })
+MongoDB Enterprise > db.student.insert({rollno : 4, name : "Atharva", department : "Computer"})
+WriteResult({ "nInserted" : 1 })
+MongoDB Enterprise > db.student.insert({rollno : 5, name : "Sankalp", department : "ENTC"})
+WriteResult({ "nInserted" : 1 })
+MongoDB Enterprise > db.student.insert({rollno : 6, name : "Raj", department : "ENTC"})
+WriteResult({ "nInserted" : 1 })
+MongoDB Enterprise > db.student.insert({rollno : 7, name : "Shubham", department : "IT"})
+WriteResult({ "nInserted" : 1 })
+MongoDB Enterprise > db.student.insert({rollno : 8, name : "Aman", department : "ENTC"})
+WriteResult({ "nInserted" : 1 })
+MongoDB Enterprise > db.student.find()
+{ "_id" : ObjectId("5f925c505a9f10a439b14395"), "rollno" : 1, "name" : "Aditya", "department" : "Computer" }
+{ "_id" : ObjectId("5f925c835a9f10a439b14396"), "rollno" : 2, "name" : "Tanay", "department" : "IT" }
+{ "_id" : ObjectId("5f925c8e5a9f10a439b14397"), "rollno" : 3, "name" : "Jay", "department" : "IT" }
+{ "_id" : ObjectId("5f925cac5a9f10a439b14398"), "rollno" : 4, "name" : "Atharva", "department" : "Computer" }
+{ "_id" : ObjectId("5f925cc05a9f10a439b14399"), "rollno" : 5, "name" : "Sankalp", "department" : "ENTC" }
+{ "_id" : ObjectId("5f925d085a9f10a439b1439a"), "rollno" : 6, "name" : "Raj", "department" : "ENTC" }
+{ "_id" : ObjectId("5f925d1b5a9f10a439b1439b"), "rollno" : 7, "name" : "Shubham", "department" : "IT" }
+{ "_id" : ObjectId("5f925d3f5a9f10a439b1439c"), "rollno" : 8, "name" : "Aman", "department" : "ENTC" }
+MongoDB Enterprise > db.student.find().pretty()
+{
+        "_id" : ObjectId("5f925c505a9f10a439b14395"),
+        "rollno" : 1,
+        "name" : "Aditya",
+        "department" : "Computer"
+}
+{
+        "_id" : ObjectId("5f925c835a9f10a439b14396"),
+        "rollno" : 2,
+        "name" : "Tanay",
+        "department" : "IT"
+}
+{
+        "_id" : ObjectId("5f925c8e5a9f10a439b14397"),
+        "rollno" : 3,
+        "name" : "Jay",
+        "department" : "IT"
+}
+{
+        "_id" : ObjectId("5f925cac5a9f10a439b14398"),
+        "rollno" : 4,
+        "name" : "Atharva",
+        "department" : "Computer"
+}
+{
+        "_id" : ObjectId("5f925cc05a9f10a439b14399"),
+        "rollno" : 5,
+        "name" : "Sankalp",
+        "department" : "ENTC"
+}
+{
+        "_id" : ObjectId("5f925d085a9f10a439b1439a"),
+        "rollno" : 6,
+        "name" : "Raj",
+        "department" : "ENTC"
+}
+{
+        "_id" : ObjectId("5f925d1b5a9f10a439b1439b"),
+        "rollno" : 7,
+        "name" : "Shubham",
+        "department" : "IT"
+}
+{
+        "_id" : ObjectId("5f925d3f5a9f10a439b1439c"),
+        "rollno" : 8,
+        "name" : "Aman",
+        "department" : "ENTC"
+}
+MongoDB Enterprise > db.student.update({rollno : 2}, {$set : {department : "Computer"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+MongoDB Enterprise > db.student.find()
+{ "_id" : ObjectId("5f925c505a9f10a439b14395"), "rollno" : 1, "name" : "Aditya", "department" : "Computer" }
+{ "_id" : ObjectId("5f925c835a9f10a439b14396"), "rollno" : 2, "name" : "Tanay", "department" : "Computer" }
+{ "_id" : ObjectId("5f925c8e5a9f10a439b14397"), "rollno" : 3, "name" : "Jay", "department" : "IT" }
+{ "_id" : ObjectId("5f925cac5a9f10a439b14398"), "rollno" : 4, "name" : "Atharva", "department" : "Computer" }
+{ "_id" : ObjectId("5f925cc05a9f10a439b14399"), "rollno" : 5, "name" : "Sankalp", "department" : "ENTC" }
+{ "_id" : ObjectId("5f925d085a9f10a439b1439a"), "rollno" : 6, "name" : "Raj", "department" : "ENTC" }
+{ "_id" : ObjectId("5f925d1b5a9f10a439b1439b"), "rollno" : 7, "name" : "Shubham", "department" : "IT" }
+{ "_id" : ObjectId("5f925d3f5a9f10a439b1439c"), "rollno" : 8, "name" : "Aman", "department" : "ENTC" }
+MongoDB Enterprise > db.student.updateMany({department : "ENTC"}, {$set : {department : "IT"}})
+{ "acknowledged" : true, "matchedCount" : 3, "modifiedCount" : 3 }
+MongoDB Enterprise > db.student.find()
+{ "_id" : ObjectId("5f925c505a9f10a439b14395"), "rollno" : 1, "name" : "Aditya", "department" : "Computer" }
+{ "_id" : ObjectId("5f925c835a9f10a439b14396"), "rollno" : 2, "name" : "Tanay", "department" : "Computer" }
+{ "_id" : ObjectId("5f925c8e5a9f10a439b14397"), "rollno" : 3, "name" : "Jay", "department" : "IT" }
+{ "_id" : ObjectId("5f925cac5a9f10a439b14398"), "rollno" : 4, "name" : "Atharva", "department" : "Computer" }
+{ "_id" : ObjectId("5f925cc05a9f10a439b14399"), "rollno" : 5, "name" : "Sankalp", "department" : "IT" }
+{ "_id" : ObjectId("5f925d085a9f10a439b1439a"), "rollno" : 6, "name" : "Raj", "department" : "IT" }
+{ "_id" : ObjectId("5f925d1b5a9f10a439b1439b"), "rollno" : 7, "name" : "Shubham", "department" : "IT" }
+{ "_id" : ObjectId("5f925d3f5a9f10a439b1439c"), "rollno" : 8, "name" : "Aman", "department" : "IT" }
+MongoDB Enterprise > db.student.find({rollno : {$gt : 5}})
+{ "_id" : ObjectId("5f925d085a9f10a439b1439a"), "rollno" : 6, "name" : "Raj", "department" : "IT" }
+{ "_id" : ObjectId("5f925d1b5a9f10a439b1439b"), "rollno" : 7, "name" : "Shubham", "department" : "IT" }
+{ "_id" : ObjectId("5f925d3f5a9f10a439b1439c"), "rollno" : 8, "name" : "Aman", "department" : "IT" }
+MongoDB Enterprise > db.student.find({rollno : {$gte : 5}})
+{ "_id" : ObjectId("5f925cc05a9f10a439b14399"), "rollno" : 5, "name" : "Sankalp", "department" : "IT" }
+{ "_id" : ObjectId("5f925d085a9f10a439b1439a"), "rollno" : 6, "name" : "Raj", "department" : "IT" }
+{ "_id" : ObjectId("5f925d1b5a9f10a439b1439b"), "rollno" : 7, "name" : "Shubham", "department" : "IT" }
+{ "_id" : ObjectId("5f925d3f5a9f10a439b1439c"), "rollno" : 8, "name" : "Aman", "department" : "IT" }
+MongoDB Enterprise > db.student.find({rollno : {$lt : 5}})
+{ "_id" : ObjectId("5f925c505a9f10a439b14395"), "rollno" : 1, "name" : "Aditya", "department" : "Computer" }
+{ "_id" : ObjectId("5f925c835a9f10a439b14396"), "rollno" : 2, "name" : "Tanay", "department" : "Computer" }
+{ "_id" : ObjectId("5f925c8e5a9f10a439b14397"), "rollno" : 3, "name" : "Jay", "department" : "IT" }
+{ "_id" : ObjectId("5f925cac5a9f10a439b14398"), "rollno" : 4, "name" : "Atharva", "department" : "Computer" }
+MongoDB Enterprise > db.student.find({rollno : {$lte : 5}})
+{ "_id" : ObjectId("5f925c505a9f10a439b14395"), "rollno" : 1, "name" : "Aditya", "department" : "Computer" }
+{ "_id" : ObjectId("5f925c835a9f10a439b14396"), "rollno" : 2, "name" : "Tanay", "department" : "Computer" }
+{ "_id" : ObjectId("5f925c8e5a9f10a439b14397"), "rollno" : 3, "name" : "Jay", "department" : "IT" }
+{ "_id" : ObjectId("5f925cac5a9f10a439b14398"), "rollno" : 4, "name" : "Atharva", "department" : "Computer" }
+{ "_id" : ObjectId("5f925cc05a9f10a439b14399"), "rollno" : 5, "name" : "Sankalp", "department" : "IT" }
+MongoDB Enterprise > db.student.find()
+{ "_id" : ObjectId("5f925c505a9f10a439b14395"), "rollno" : 1, "name" : "Aditya", "department" : "Computer" }
+{ "_id" : ObjectId("5f925c835a9f10a439b14396"), "rollno" : 2, "name" : "Tanay", "department" : "Computer" }
+{ "_id" : ObjectId("5f925c8e5a9f10a439b14397"), "rollno" : 3, "name" : "Jay", "department" : "IT" }
+{ "_id" : ObjectId("5f925cac5a9f10a439b14398"), "rollno" : 4, "name" : "Atharva", "department" : "Computer" }
+{ "_id" : ObjectId("5f925cc05a9f10a439b14399"), "rollno" : 5, "name" : "Sankalp", "department" : "IT" }
+{ "_id" : ObjectId("5f925d085a9f10a439b1439a"), "rollno" : 6, "name" : "Raj", "department" : "IT" }
+{ "_id" : ObjectId("5f925d1b5a9f10a439b1439b"), "rollno" : 7, "name" : "Shubham", "department" : "IT" }
+{ "_id" : ObjectId("5f925d3f5a9f10a439b1439c"), "rollno" : 8, "name" : "Aman", "department" : "IT" }
+MongoDB Enterprise > db.student.remove({rollno : 8})
+WriteResult({ "nRemoved" : 1 })
+MongoDB Enterprise > db.student.find()
+{ "_id" : ObjectId("5f925c505a9f10a439b14395"), "rollno" : 1, "name" : "Aditya", "department" : "Computer" }
+{ "_id" : ObjectId("5f925c835a9f10a439b14396"), "rollno" : 2, "name" : "Tanay", "department" : "Computer" }
+{ "_id" : ObjectId("5f925c8e5a9f10a439b14397"), "rollno" : 3, "name" : "Jay", "department" : "IT" }
+{ "_id" : ObjectId("5f925cac5a9f10a439b14398"), "rollno" : 4, "name" : "Atharva", "department" : "Computer" }
+{ "_id" : ObjectId("5f925cc05a9f10a439b14399"), "rollno" : 5, "name" : "Sankalp", "department" : "IT" }
+{ "_id" : ObjectId("5f925d085a9f10a439b1439a"), "rollno" : 6, "name" : "Raj", "department" : "IT" }
+{ "_id" : ObjectId("5f925d1b5a9f10a439b1439b"), "rollno" : 7, "name" : "Shubham", "department" : "IT" }
